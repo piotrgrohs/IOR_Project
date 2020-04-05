@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.Usluga" table="USLUGA" schema="hiberlab">
+        <id name="id" column="USLUGA_ID"/>
+        <property name="cena" column="CENA"/>
+        <property name="opis" column="OPIS"/>
+        <property name="rabat" column="RABAT"/>
+    </class>
+</hibernate-mapping>

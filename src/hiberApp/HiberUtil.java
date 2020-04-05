@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package hiberApp;
 
 import model.*;
 import org.hibernate.SessionFactory;
@@ -67,15 +68,11 @@ public final class HiberUtil {
         try {
             Configuration config = new Configuration().configure();
 //            config.setProperty("hibernate.show_sql", "false");
+                      
+            config
+            .addAnnotatedClass(Osoba.class)
 
-            Configuration configuration = config.addAnnotatedClass(Adres.class)
-                    .addAnnotatedClass(Cennik.class)
-                    .addAnnotatedClass(Lekarz.class)
-                    .addAnnotatedClass(Osoba.class)
-                    .addAnnotatedClass(Pacjent.class)
-                    .addAnnotatedClass(Usluga.class)
-                    .addAnnotatedClass(Wizyta.class)
-                    .addAnnotatedClass(Zabieg.class);
+            ;
             SessionFactory sf = config.buildSessionFactory();
             return (sf);
         }

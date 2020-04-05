@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.Zabieg" table="ZABIEG" schema="hiberlab">
+        <id name="id" column="ZABIEG_ID"/>
+        <property name="nrZeba" column="NRZEBA"/>
+        <property name="opis" column="OPIS"/>
+        <many-to-one name="wizyta" class="model.Wizyta" unique="false" foreign-key="FK_ZAB_WIZ" column="WIZYTA_ID" cascade="save-update"/>
+    </class>
+</hibernate-mapping>

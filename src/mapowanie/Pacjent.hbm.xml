@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <joined-subclass extends="model.Osoba" lazy="false"  name="model.Pacjent" table="PACJENCI">
+        <key foreign-key="FK_PAC_OS" column="PACJENT_ID"/>
+        <property name="nrKartyUbezp" column="nrKartyUbezp"/>
+        <many-to-one name="wizyta" foreign-key="FK_PAC_WIZ" unique="false" column="WIZYTA_ID" class="model.Wizyta" cascade="save-update"/>
+    </joined-subclass>
+</hibernate-mapping>

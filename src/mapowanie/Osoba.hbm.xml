@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.Osoba" table="OSOBY">
+        <id name="id" column="ID_OSOBY"/>
+        <many-to-one name="adres" class="model.Adres" unique="false" foreign-key="FK_OS_AD" column="ADRES_ID" cascade="save-update"/>
+        <property name="nazwisko" column="NAZWISKO"/>
+        <property name="imie" column="IMIE"/>
+        <property name="pesel" column="PESEL"/>
+    </class>
+</hibernate-mapping>

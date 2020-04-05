@@ -1,19 +1,30 @@
 package model;
 
-import java.util.Calendar;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.sql.Timestamp;
+import java.util.Objects;
 
+@Entity
 public class Wizyta {
-    private Calendar data;
+    private Timestamp data;
     private String typ;
+    private int id;
 
-    public Calendar getData() {
+    @Basic
+    @Column(name = "data")
+    public Timestamp getData() {
         return data;
     }
 
-    public void setData(Calendar data) {
+    public void setData(Timestamp data) {
         this.data = data;
     }
 
+    @Basic
+    @Column(name = "typ")
     public String getTyp() {
         return typ;
     }
@@ -22,8 +33,28 @@ public class Wizyta {
         this.typ = typ;
     }
 
-    public Wizyta(Calendar data, String typ) {
-        this.data = data;
-        this.typ = typ;
+    @Id
+    @Column(name = "WIZYTA_ID")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Wizyta wizyta = (Wizyta) o;
+        return id == wizyta.id &&
+                Objects.equals(data, wizyta.data) &&
+                Objects.equals(typ, wizyta.typ);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(data, typ, id);
     }
 }

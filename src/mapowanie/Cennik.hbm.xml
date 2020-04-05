@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.Cennik" table="CENNIK" schema="hiberlab">
+        <id name="id" column="CENNIK_ID"/>
+        <property name="kwota" column="KWOTA"/>
+        <property name="opis" column="OPIS"/>
+        <many-to-one name="wizyta" class="model.Wizyta" unique="false" foreign-key="FK_CEN_WIZ" column="WIZYTA_ID" cascade="save-update"/>
+    </class>
+</hibernate-mapping>
