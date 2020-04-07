@@ -10,11 +10,12 @@ public class Cennik {
     private String kwota;
     private String opis;
     private int id;
-    private Wizyta wizyta;
 
     @ManyToOne
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name="WIZYTA_ID",foreignKey = @ForeignKey(name = "FK_CEN_WIZ"))
+    private Wizyta wizyta;
+
     public Wizyta getWizyta() {
         return wizyta;
     }

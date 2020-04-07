@@ -1,9 +1,6 @@
 package model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -51,6 +48,30 @@ public class Usluga {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="CENNIK_ID",foreignKey = @javax.persistence.ForeignKey(name = "FK_USL_CEN"))
+    private Cennik cennik;
+
+    public Cennik getCennik() {
+        return cennik;
+    }
+
+    public void setCennik(Cennik cennik) {
+        this.cennik = cennik;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="WIZYTA_ID",foreignKey = @javax.persistence.ForeignKey(name = "FK_USL_WIZ"))
+    private Wizyta wizyta;
+
+    public Wizyta getWizyta() {
+        return wizyta;
+    }
+
+    public void setWizyta(Wizyta wizyta) {
+        this.wizyta = wizyta;
     }
 
     @Override

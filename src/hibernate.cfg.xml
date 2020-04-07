@@ -32,6 +32,8 @@
         <mapping resource="mapowanie/Cennik.hbm.xml"/>
         <mapping class="model.Pacjent"/>
         <mapping resource="mapowanie/Pacjent.hbm.xml"/>
+        <mapping class="model.Usluga"/>
+        <mapping resource="mapowanie/Usluga.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

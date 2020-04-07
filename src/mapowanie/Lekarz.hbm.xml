@@ -8,7 +8,7 @@
                 <key column="LEKARZ_ID" foreign-key="FK_LEK_OS"/>
                 <property name="specjalizacja" column="SPECJALIZACJA"/>
                 <property name="tytulNauk" column="TYTULNAUK"/>
-                <many-to-one name="wizyta" foreign-key="FK_LEK_WIZ" unique="false" column="WIZYTA_ID" class="model.Wizyta" cascade="save-update"/>
+                <many-to-one name="wizyta" foreign-key="FK_LEK_WIZ" unique="false" column="WIZYTA_ID" class="model.Wizyta" />
         </joined-subclass>
 
 </hibernate-mapping>

@@ -4,6 +4,8 @@
  */
 package hiberApp;
 
+import model.Lekarz;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -21,10 +23,20 @@ public final class MainAppJPA {
     private final static EntityManagerFactory FACTORY = Persistence.createEntityManagerFactory("labPU");
 
     public static void main(String[] args) {
-
+        showAllEmployees();
        
     }
-
+    public static void showAllEmployees(){
+        EntityManager em = EMBuilder.getEM();
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery criteria = builder.createQuery(Lekarz.class);
+        Root<Lekarz> root = criteria.from(Lekarz.class);
+        criteria.select(root);
+        List<Lekarz> result = em.createQuery(criteria).getResultList();
+        result.forEach(System.out::println);
+        em.close();
+        EMBuilder.closeFactory();
+    }
 
   
 }

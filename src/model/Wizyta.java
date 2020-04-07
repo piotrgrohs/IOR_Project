@@ -1,9 +1,8 @@
 package model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.annotations.Cascade;
+
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -42,6 +41,8 @@ public class Wizyta {
     public void setId(int id) {
         this.id = id;
     }
+
+
 
     @Override
     public boolean equals(Object o) {

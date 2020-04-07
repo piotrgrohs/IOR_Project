@@ -7,19 +7,26 @@ import java.util.Objects;
 
 @Entity
 public class Osoba {
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "ID_OSOBY")
     private int id;
     private String nazwisko;
     private String imie;
     private String pesel;
-    private Adres adres;
-
-    public void setAdres(Adres adres) {
-        this.adres = adres;
-    }
 
     @ManyToOne
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name="ADRES_ID",foreignKey = @javax.persistence.ForeignKey(name = "FK_OS_AD"))
+    private Adres adres;
+
+    public Osoba(){}
+
+
+    public void setAdres(Adres adres) {
+        this.adres = adres;
+    }
     public Adres getAdres() {
         return adres;
     }
@@ -30,8 +37,7 @@ public class Osoba {
         this.pesel = pesel;
     }
 
-    @Id
-    @Column(name = "ID_OSOBY")
+
     public int getId() {
         return id;
     }
