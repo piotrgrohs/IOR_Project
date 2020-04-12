@@ -8,7 +8,16 @@ public class Usluga {
     private Double cena;
     private String opis;
     private Double rabat;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "USLUGA_ID")
     private int id;
+
+    public Usluga(double cena, String opis, double rabat) {
+        this.cena = cena;
+        this.opis = opis;
+        this.rabat = rabat;
+    }
 
     @Basic
     @Column(name = "CENA")
@@ -40,8 +49,7 @@ public class Usluga {
         this.rabat = rabat;
     }
 
-    @Id
-    @Column(name = "USLUGA_ID")
+
     public int getId() {
         return id;
     }
@@ -51,7 +59,7 @@ public class Usluga {
     }
 
     @ManyToOne
-    @JoinColumn(name="CENNIK_ID",foreignKey = @javax.persistence.ForeignKey(name = "FK_USL_CEN"))
+    @JoinColumn(name = "CENNIK_ID", foreignKey = @javax.persistence.ForeignKey(name = "FK_USL_CEN"))
     private Cennik cennik;
 
     public Cennik getCennik() {
@@ -63,7 +71,7 @@ public class Usluga {
     }
 
     @ManyToOne
-    @JoinColumn(name="WIZYTA_ID",foreignKey = @javax.persistence.ForeignKey(name = "FK_USL_WIZ"))
+    @JoinColumn(name = "WIZYTA_ID", foreignKey = @javax.persistence.ForeignKey(name = "FK_USL_WIZ"))
     private Wizyta wizyta;
 
     public Wizyta getWizyta() {
@@ -73,20 +81,6 @@ public class Usluga {
     public void setWizyta(Wizyta wizyta) {
         this.wizyta = wizyta;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Usluga usluga = (Usluga) o;
-        return id == usluga.id &&
-                Objects.equals(cena, usluga.cena) &&
-                Objects.equals(opis, usluga.opis) &&
-                Objects.equals(rabat, usluga.rabat);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(cena, opis, rabat, id);
-    }
 }
+
+

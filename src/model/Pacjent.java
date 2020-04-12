@@ -4,32 +4,33 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
+@PrimaryKeyJoinColumn(name="PACJENT_ID", foreignKey = @javax.persistence.ForeignKey(name = "FK_PAC_OS"))
 public class Pacjent extends Osoba implements Serializable {
     private String nrKartyUbezp;
 
-    @ManyToOne
-    @JoinColumn(name = "WIZYTA_ID", foreignKey = @javax.persistence.ForeignKey(name = "FK_LEK_WIZ"))
-    private Wizyta wizyta;
 
+    @OneToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinColumn(name="WIZYTA_ID",foreignKey = @javax.persistence.ForeignKey(name = "FK_PAC_WIZ"))
+    private Set<Wizyta> wizyty = new HashSet<>();
+
+    public Set<Wizyta> getWizyta(){
+        return wizyty;
+    }
+    public void setWizyta(Set<Wizyta> wizyty){
+        this.wizyty = wizyty;
+    }
 
     public Pacjent(String nazwisko, String imie, String pesel) {
         super(nazwisko, imie, pesel);
     }
 
-    public Pacjent() {
-
-    }
-
-    public Wizyta getWizyta() {
-        return wizyta;
-    }
-
-    public void setWizyta(Wizyta wizyta) {
-        this.wizyta = wizyta;
-    }
+    public Pacjent() {}
 
     @Basic
     @Column(name = "nrKartyUbezp")

@@ -1,9 +1,6 @@
 package model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +11,14 @@ public class Adres {
     private Integer nrDomu;
     private Integer nrMieszkania;
     private int id;
+
+    public Adres(String kod, String miejscowosc, String ulica, Integer nrDomu,Integer nrMieszkania) {
+        this.kod = kod;
+        this.miejscowosc = miejscowosc;
+        this.ulica = ulica;
+        this.nrDomu = nrDomu;
+        this.nrMieszkania = nrMieszkania;
+    }
 
 
     @Basic
@@ -67,7 +72,8 @@ public class Adres {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ADRES_ID")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public int getId() {
         return id;
     }

@@ -5,9 +5,13 @@
 <hibernate-mapping>
 
     <class name="model.Wizyta" table="WIZYTY" >
-        <id name="id" column="WIZYTA_ID"/>
+        <id name="id" column="WIZYTA_ID">
+            <generator class="native"/>
+        </id>
         <property name="data" column="data"/>
         <property name="typ" column="typ"/>
-
+        <many-to-one name="lekarz" foreign-key="FK_WIZ_LEK" unique="false" column="LEKARZ_ID" class="model.Lekarz" />
+        <many-to-one name="pacjent" foreign-key="FK_WIZ_PAC" unique="false" column="PACJENT_ID" class="model.Pacjent" />
+        <one-to-one name="cennik" class="model.Cennik" foreign-key="FK_WIZ_CEN"  cascade="save-update"/>
     </class>
 </hibernate-mapping>

@@ -16,6 +16,11 @@ public class Zabieg {
     @JoinColumn(name="WIZYTA_ID",foreignKey = @ForeignKey(name = "FK_ZAB_WIZ"))
     private Wizyta wizyta;
 
+    public Zabieg(String nrZeba, String opis) {
+        this.nrZeba = nrZeba;
+        this.opis = opis;
+    }
+
     public Wizyta getWizyta() {
         return wizyta;
     }
@@ -52,21 +57,6 @@ public class Zabieg {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Zabieg zabieg = (Zabieg) o;
-        return id == zabieg.id &&
-                Objects.equals(nrZeba, zabieg.nrZeba) &&
-                Objects.equals(opis, zabieg.opis);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(nrZeba, opis, id);
     }
 
 

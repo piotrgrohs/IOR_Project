@@ -16,7 +16,7 @@ public class Osoba {
     private String imie;
     private String pesel;
 
-    @ManyToOne
+    @OneToOne
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name="ADRES_ID",foreignKey = @javax.persistence.ForeignKey(name = "FK_OS_AD"))
     private Adres adres;

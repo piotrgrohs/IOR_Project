@@ -11,10 +11,15 @@ public class Cennik {
     private String opis;
     private int id;
 
-    @ManyToOne
+    @OneToOne
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinColumn(name="WIZYTA_ID",foreignKey = @ForeignKey(name = "FK_CEN_WIZ"))
+    @JoinColumn(name = "WIZYTA_ID", foreignKey = @ForeignKey(name = "FK_CEN_WIZ"))
     private Wizyta wizyta;
+
+    public Cennik(String kwota,String opis) {
+        this.kwota = kwota;
+        this.opis = opis;
+    }
 
     public Wizyta getWizyta() {
         return wizyta;
@@ -52,20 +57,5 @@ public class Cennik {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cennik cennik = (Cennik) o;
-        return id == cennik.id &&
-                Objects.equals(kwota, cennik.kwota) &&
-                Objects.equals(opis, cennik.opis);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(kwota, opis, id);
     }
 }

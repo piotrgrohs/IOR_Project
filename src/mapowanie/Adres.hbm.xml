@@ -5,7 +5,9 @@
 <hibernate-mapping>
 
     <class name="model.Adres" table="ADRESY">
-        <id name="id" column="ADRES_ID"/>
+        <id name="id" column="ADRES_ID">
+            <generator class="native"/>
+        </id>
         <property name="kod" column="KOD"/>
         <property name="miejscowosc" column="MIEJSCOWOSC"/>
         <property name="ulica" column="ULICA"/>

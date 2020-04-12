@@ -5,7 +5,9 @@
 <hibernate-mapping>
 
     <class name="model.Usluga" table="USLUGA" schema="hiberlab">
-        <id name="id" column="USLUGA_ID"/>
+        <id name="id" column="USLUGA_ID">
+            <generator class="native"/>
+        </id>
         <property name="cena" column="CENA"/>
         <property name="opis" column="OPIS"/>
         <property name="rabat" column="RABAT"/>

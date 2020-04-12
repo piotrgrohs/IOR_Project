@@ -4,14 +4,29 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Wizyta {
     private Timestamp data;
     private String typ;
+    @OneToMany
+    private Set<Zabieg> zabieg = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "LEKARZ_ID", foreignKey = @javax.persistence.ForeignKey(name = "FK_WIZ_LEK"))
+    private Lekarz lekarz;
+    @ManyToOne
+    @JoinColumn(name = "PACJENT_ID", foreignKey = @javax.persistence.ForeignKey(name = "FK_WIZ_PAC"))
+    private Pacjent pacjent;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "WIZYTA_ID")
     private int id;
-
+    @OneToOne
+    @JoinColumn(name = "CENNIK_ID", foreignKey = @ForeignKey(name = "FK_WIZ_CEN"))
+    private Cennik cennik;
     @Basic
     @Column(name = "data")
     public Timestamp getData() {
@@ -32,8 +47,7 @@ public class Wizyta {
         this.typ = typ;
     }
 
-    @Id
-    @Column(name = "WIZYTA_ID")
+
     public int getId() {
         return id;
     }
@@ -42,20 +56,35 @@ public class Wizyta {
         this.id = id;
     }
 
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Wizyta wizyta = (Wizyta) o;
-        return id == wizyta.id &&
-                Objects.equals(data, wizyta.data) &&
-                Objects.equals(typ, wizyta.typ);
+    public Lekarz getLekarz() {
+        return lekarz;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(data, typ, id);
+    public void setLekarz(Lekarz lekarz) {
+        this.lekarz = lekarz;
+    }
+
+    public Pacjent getPacjent() {
+        return pacjent;
+    }
+    public void setPacjent(Pacjent pacjent) {
+        this.pacjent = pacjent;
+    }
+
+    public Set<Zabieg> getZabieg() {
+        return zabieg;
+    }
+
+    public void setZabieg(Set<Zabieg> zabieg) {
+        this.zabieg = zabieg;
+    }
+
+    public Cennik getCennik() {
+        return cennik;
+    }
+
+    public void setCennik(Cennik cennik) {
+        this.cennik = cennik;
     }
 }
+

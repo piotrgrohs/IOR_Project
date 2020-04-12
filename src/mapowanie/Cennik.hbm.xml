@@ -8,6 +8,6 @@
         <id name="id" column="CENNIK_ID"/>
         <property name="kwota" column="KWOTA"/>
         <property name="opis" column="OPIS"/>
-        <many-to-one name="wizyta" class="model.Wizyta" unique="false" foreign-key="FK_CEN_WIZ" column="WIZYTA_ID" cascade="save-update"/>
+        <one-to-one name="wizyta" class="model.Wizyta" foreign-key="FK_CEN_WIZ"  cascade="save-update"/>
     </class>
 </hibernate-mapping>
