@@ -12,21 +12,27 @@ import java.util.Set;
 public class Wizyta {
     private Timestamp data;
     private String typ;
+
     @OneToMany
     private Set<Zabieg> zabieg = new HashSet<>();
+
     @ManyToOne
     @JoinColumn(name = "LEKARZ_ID", foreignKey = @javax.persistence.ForeignKey(name = "FK_WIZ_LEK"))
     private Lekarz lekarz;
+
     @ManyToOne
     @JoinColumn(name = "PACJENT_ID", foreignKey = @javax.persistence.ForeignKey(name = "FK_WIZ_PAC"))
     private Pacjent pacjent;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "WIZYTA_ID")
     private int id;
+
     @OneToOne
     @JoinColumn(name = "CENNIK_ID", foreignKey = @ForeignKey(name = "FK_WIZ_CEN"))
     private Cennik cennik;
+
     @Basic
     @Column(name = "data")
     public Timestamp getData() {
@@ -67,6 +73,7 @@ public class Wizyta {
     public Pacjent getPacjent() {
         return pacjent;
     }
+
     public void setPacjent(Pacjent pacjent) {
         this.pacjent = pacjent;
     }

@@ -13,7 +13,6 @@ public class Lekarz extends Osoba implements Serializable {
     private String tytulNauk;
 
     @OneToMany
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name="WIZYTA_ID",foreignKey = @javax.persistence.ForeignKey(name = "FK_LEK_WIZ"))
     private Set<Wizyta> wizyty = new HashSet<>();
 

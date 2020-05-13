@@ -18,7 +18,7 @@
         <property name="hibernate.c3p0.idle_test_period">30</property>
         <property name="hibernate.generate_statistics">false</property>
         <property name="hibernate.current_session_context_class">thread</property>
-        <mapping class="model.Adres"/>
+        <!--<mapping class="model.Adres"/>
         <mapping resource="mapowanie/Adres.hbm.xml"/>
         <mapping class="model.Osoba"/>
         <mapping resource="mapowanie/Osoba.hbm.xml"/>
@@ -33,7 +33,7 @@
         <mapping class="model.Pacjent"/>
         <mapping resource="mapowanie/Pacjent.hbm.xml"/>
         <mapping class="model.Usluga"/>
-        <mapping resource="mapowanie/Usluga.hbm.xml"/>
+        <mapping resource="mapowanie/Usluga.hbm.xml"/>-->
 
     </session-factory>
 </hibernate-configuration>

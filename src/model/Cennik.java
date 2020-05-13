@@ -9,6 +9,10 @@ import java.util.Objects;
 public class Cennik {
     private String kwota;
     private String opis;
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "CENNIK_ID")
     private int id;
 
     @OneToOne
@@ -30,7 +34,7 @@ public class Cennik {
     }
 
     @Basic
-    @Column(name = "kwota")
+    @Column(name = "KWOTA")
     public String getKwota() {
         return kwota;
     }
@@ -40,7 +44,7 @@ public class Cennik {
     }
 
     @Basic
-    @Column(name = "opis")
+    @Column(name = "OPIS")
     public String getOpis() {
         return opis;
     }
@@ -49,8 +53,6 @@ public class Cennik {
         this.opis = opis;
     }
 
-    @Id
-    @Column(name = "id")
     public int getId() {
         return id;
     }

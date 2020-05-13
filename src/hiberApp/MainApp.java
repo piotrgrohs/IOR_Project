@@ -18,15 +18,47 @@ import java.util.function.Consumer;
 /* 
  @author LabHiber
  */
+
+//
 public final class MainApp {
 
     private static final SessionFactory SESSION_FACTORY = HiberUtil.getSessionFactory(HiberUtil.Mapping.XML);
 
     public static void main(String[] args) {
         create();
-//        showAll();
-        showAllPersons();
+        //1# warunek +projekcja
+         firstTask();
+        //2#  złączenie + operacja na kolekcjachq
+        //secondTask();
+        //3# funkcja agregująca z ewentualną frazą HAVING
+        //thirdTask();
+        //
     }
+    //1
+    private static void firstTask() {
+        try (Session session = SESSION_FACTORY.openSession()) {
+            Query<Tuple> query = session.createQuery("select l.nazwisko from Lekarz l where l.imie like 'W%'", Tuple.class);
+            List<Tuple> all = query.list();
+            all.forEach(t -> System.out.println(t.get(0)+" "+t.get(1)));
+        }
+    }
+    //2
+    private static void secondTask(){
+        try (Session session = SESSION_FACTORY.openSession()) {
+            Query<Tuple> query = session.createQuery("Select w.data from Wizyta w Where exists (select l.imie from Lekarz l where w.lekarz.id = l.id)", Tuple.class);
+            List<Tuple> all = query.list();
+            all.forEach(t -> System.out.println(t.get(0)));
+        }
+    }
+    //3
+    private static void thirdTask(){
+        try (Session session = SESSION_FACTORY.openSession()) {
+            Query<Tuple> query = session.createQuery("Select count(w.data) from Wizyta w group by w.data ", Tuple.class);
+            List<Tuple> all = query.list();
+            all.forEach(t -> System.out.println(t.get(0)));
+        }
+    }
+
 
 
     /**
@@ -85,38 +117,35 @@ public final class MainApp {
             Date date = new Date();
             w1.setData(new Timestamp(date.getTime()));
             w1.setCennik(c1);
-            w1.setLekarz(l1);
             w1.setPacjent(p1);
+            w1.setLekarz(l1);
             session.save(w1);
 
-            Wizyta w2 = new Wizyta();
+           /* Wizyta w2 = new Wizyta();
             w2.setTyp("Wybielanie");
             w2.setData(new Timestamp(date.getTime()));
             w2.setCennik(c1);
             w2.setLekarz(l1);
             w2.setPacjent(p1);
             session.save(w2);
-
-            Wizyta w3 = new Wizyta();
+*/
+            /*Wizyta w3 = new Wizyta();
             w3.setTyp("Wyrywanie zeba");
             w3.setData(new Timestamp(date.getTime()));
             w3.setCennik(c1);
             w3.setLekarz(l2);
             w3.setPacjent(p2);
-            session.save(w3);
+            session.save(w3);*/
 
             HashSet<Wizyta> wiz1 = new HashSet<>(2);
             wiz1.add(w1);
-            wiz1.add(w2);
             l1.setWizyta(wiz1);
             p1.setWizyta(wiz1);
 
-            HashSet<Wizyta> wiz2 = new HashSet<>(1);
+           /* HashSet<Wizyta> wiz2 = new HashSet<>(1);
             wiz2.add(w3);
             l2.setWizyta(wiz2);
-            p2.setWizyta(wiz2);
-
-
+            p2.setWizyta(wiz2);*/
 
             l1.setSpecjalizacja("ipsum");
             l2.setSpecjalizacja("dolor");
@@ -145,6 +174,7 @@ public final class MainApp {
             p3.setAdres(a3);
             p4.setAdres(a4);
 
+
             session.save(p1);
             session.save(p2);
             session.save(p3);
@@ -169,6 +199,8 @@ public final class MainApp {
             session.save(l9);
             session.save(l10);
 
+
+
             tx.commit();
         }
     }
@@ -179,7 +211,6 @@ public final class MainApp {
  private static void showAll() {
         try (Session session = SESSION_FACTORY.openSession()) {
             Query query = session.createQuery("from java.lang.Object");
-            query.setComment("All objects list");
             List<Object> all = query.list();
             all.forEach(System.out::println);
         }

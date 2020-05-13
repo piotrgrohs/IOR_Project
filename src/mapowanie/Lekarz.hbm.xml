@@ -8,7 +8,7 @@
                 <key column="LEKARZ_ID" foreign-key="FK_LEK_OS"/>
                 <property name="specjalizacja" column="SPECJALIZACJA"/>
                 <property name="tytulNauk" column="TYTULNAUK"/>
-                <set lazy="true" name="wizyta" inverse="true">
+                <set lazy="true" name="wizyta" cascade="save-update">
                         <key >
                                 <column name="WIZYTA_ID"/>
                         </key>
