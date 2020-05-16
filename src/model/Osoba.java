@@ -10,7 +10,7 @@ public class Osoba {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "ID_OSOBY")
+    @Column(name = "OSOBY_ID")
     private int id;
     private String nazwisko;
     private String imie;

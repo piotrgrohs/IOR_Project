@@ -10,8 +10,17 @@
         </id>
         <property name="data" column="data"/>
         <property name="typ" column="typ"/>
-        <many-to-one name="lekarz" foreign-key="FK_WIZ_LEK"  column="LEKARZ_ID" class="model.Lekarz" />
-        <many-to-one name="pacjent" foreign-key="FK_WIZ_PAC"  column="PACJENT_ID" class="model.Pacjent" />
-        <one-to-one name="cennik" class="model.Cennik" foreign-key="FK_WIZ_CEN"  cascade="save-update"/>
+        <set lazy="true" name="zabiegi" cascade="save-update" >
+            <key foreign-key="FK_WIZ_ZAB">
+                <column name="WIZYTA_ID"/>
+            </key>
+            <one-to-many  class="model.Zabieg"/>
+        </set>
+        <set lazy="true" name="cennik" cascade="save-update" >
+            <key foreign-key="FK_WIZ_CEN">
+                <column name="WIZYTA_ID"/>
+            </key>
+            <one-to-many  class="model.Cennik"/>
+        </set>
     </class>
 </hibernate-mapping>

@@ -4,10 +4,11 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="model.Cennik" table="CENNIK" schema="hiberlab">
-        <id name="id" column="CENNIK_ID"/>
+    <class name="model.Cennik" table="CENNIKI" schema="hiberlab">
+        <id name="id" column="CENNIK_ID" >
+            <generator class="native"/>
+        </id>
         <property name="kwota" column="KWOTA"/>
         <property name="opis" column="OPIS"/>
-        <one-to-one name="wizyta" class="model.Wizyta" foreign-key="FK_CEN_WIZ"  cascade="save-update"/>
     </class>
 </hibernate-mapping>

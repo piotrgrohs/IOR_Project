@@ -9,15 +9,23 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@PrimaryKeyJoinColumn(name="PACJENT_ID", foreignKey = @javax.persistence.ForeignKey(name = "FK_PAC_OS"))
+@PrimaryKeyJoinColumn(name="PACJENT_ID", foreignKey = @ForeignKey(name = "FK_PAC_OS"))
 public class Pacjent extends Osoba implements Serializable {
     private String nrKartyUbezp;
 
 
     @OneToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinColumn(name="WIZYTA_ID",foreignKey = @javax.persistence.ForeignKey(name = "FK_PAC_WIZ"))
+    @JoinColumn(name="WIZYTA_ID",foreignKey = @ForeignKey(name = "FK_PAC_WIZ"))
     private Set<Wizyta> wizyty = new HashSet<>();
+
+    public Set<Wizyta> getWizyty() {
+        return wizyty;
+    }
+
+    public void setWizyty(Set<Wizyta> wizyty) {
+        this.wizyty = wizyty;
+    }
 
     public Set<Wizyta> getWizyta(){
         return wizyty;

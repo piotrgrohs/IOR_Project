@@ -28,7 +28,7 @@ public final class HiberUtil {
        /**
         * use annotation defined mappings for confuguration
         */
-       ANN;
+       ANN
     } 
     /**
      * 

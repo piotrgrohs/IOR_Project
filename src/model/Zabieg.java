@@ -11,23 +11,13 @@ public class Zabieg {
     private String opis;
     private int id;
 
-    @ManyToOne
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinColumn(name="WIZYTA_ID",foreignKey = @ForeignKey(name = "FK_ZAB_WIZ"))
-    private Wizyta wizyta;
+    public Zabieg(){}
 
     public Zabieg(String nrZeba, String opis) {
         this.nrZeba = nrZeba;
         this.opis = opis;
     }
 
-    public Wizyta getWizyta() {
-        return wizyta;
-    }
-
-    public void setWizyta(Wizyta wizyta) {
-        this.wizyta = wizyta;
-    }
 
     @Basic
     @Column(name = "NRZEBA")

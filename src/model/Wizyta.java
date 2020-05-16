@@ -13,25 +13,19 @@ public class Wizyta {
     private Timestamp data;
     private String typ;
 
-    @OneToMany
-    private Set<Zabieg> zabieg = new HashSet<>();
-
-    @ManyToOne
-    @JoinColumn(name = "LEKARZ_ID", foreignKey = @javax.persistence.ForeignKey(name = "FK_WIZ_LEK"))
-    private Lekarz lekarz;
-
-    @ManyToOne
-    @JoinColumn(name = "PACJENT_ID", foreignKey = @javax.persistence.ForeignKey(name = "FK_WIZ_PAC"))
-    private Pacjent pacjent;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "WIZYTA_ID")
     private int id;
 
-    @OneToOne
-    @JoinColumn(name = "CENNIK_ID", foreignKey = @ForeignKey(name = "FK_WIZ_CEN"))
-    private Cennik cennik;
+    @OneToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private Set<Cennik> cennik = new HashSet<>();
+
+    @OneToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinColumn(name="ZABIEG_ID",foreignKey = @ForeignKey(name = "FK_WIZ_ZAB"))
+    private Set<Zabieg> zabiegi = new HashSet<>();
 
     @Basic
     @Column(name = "data")
@@ -62,35 +56,20 @@ public class Wizyta {
         this.id = id;
     }
 
-    public Lekarz getLekarz() {
-        return lekarz;
+    public Set<Zabieg> getZabiegi() {
+        return zabiegi;
     }
 
-    public void setLekarz(Lekarz lekarz) {
-        this.lekarz = lekarz;
+    public void setZabiegi(Set<Zabieg> zabiegi) {
+        this.zabiegi = zabiegi;
     }
 
-    public Pacjent getPacjent() {
-        return pacjent;
-    }
 
-    public void setPacjent(Pacjent pacjent) {
-        this.pacjent = pacjent;
-    }
-
-    public Set<Zabieg> getZabieg() {
-        return zabieg;
-    }
-
-    public void setZabieg(Set<Zabieg> zabieg) {
-        this.zabieg = zabieg;
-    }
-
-    public Cennik getCennik() {
+    public Set<Cennik> getCennik() {
         return cennik;
     }
 
-    public void setCennik(Cennik cennik) {
+    public void setCennik(Set<Cennik> cennik) {
         this.cennik = cennik;
     }
 }

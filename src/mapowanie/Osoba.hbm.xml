@@ -5,7 +5,7 @@
 <hibernate-mapping>
 
     <class name="model.Osoba" table="OSOBY">
-        <id name="id" column="ID_OSOBY" >
+        <id name="id" column="OSOBY_ID" >
             <generator class="native"/>
         </id>
         <one-to-one name="adres" class="model.Adres"  foreign-key="FK_OS_AD" cascade="save-update"/>

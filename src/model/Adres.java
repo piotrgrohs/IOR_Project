@@ -12,6 +12,8 @@ public class Adres {
     private Integer nrMieszkania;
     private int id;
 
+    public Adres(){}
+
     public Adres(String kod, String miejscowosc, String ulica, Integer nrDomu,Integer nrMieszkania) {
         this.kod = kod;
         this.miejscowosc = miejscowosc;

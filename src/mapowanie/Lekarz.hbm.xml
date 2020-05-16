@@ -8,11 +8,11 @@
                 <key column="LEKARZ_ID" foreign-key="FK_LEK_OS"/>
                 <property name="specjalizacja" column="SPECJALIZACJA"/>
                 <property name="tytulNauk" column="TYTULNAUK"/>
-                <set lazy="true" name="wizyta" cascade="save-update">
-                        <key >
-                                <column name="WIZYTA_ID"/>
+                <set lazy="true" name="wizyty" cascade="save-update" >
+                        <key foreign-key="FK_LEK_WIZ">
+                                <column name="LEKARZ_ID"/>
                         </key>
-                        <one-to-many class="model.Wizyta"/>
+                        <one-to-many  class="model.Wizyta"/>
                 </set>
 
         </joined-subclass>

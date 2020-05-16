@@ -1,0 +1,14 @@
+First task
+Hibernate: select lekarz0_1_.NAZWISKO as col_0_0_ from LEKARZE lekarz0_ inner join OSOBY lekarz0_1_ on lekarz0_.LEKARZ_ID=lekarz0_1_.OSOBY_ID where lekarz0_1_.IMIE like 'W%'
+Remigiusz
+Kajetan
+Natan
+Henryk
+Second task
+Hibernate: select lekarz0_1_.IMIE as col_0_0_, wizyty1_.typ as col_1_0_ from LEKARZE lekarz0_ inner join OSOBY lekarz0_1_ on lekarz0_.LEKARZ_ID=lekarz0_1_.OSOBY_ID inner join WIZYTY wizyty1_ on lekarz0_.LEKARZ_ID=wizyty1_.LEKARZ_ID where wizyty1_.typ like 'Wybielanie'
+Wi?niewski Wybielanie
+Third task
+Hibernate: select lekarz0_1_.IMIE as col_0_0_, count(*) as col_1_0_ from LEKARZE lekarz0_ inner join OSOBY lekarz0_1_ on lekarz0_.LEKARZ_ID=lekarz0_1_.OSOBY_ID inner join WIZYTY wizyty1_ on lekarz0_.LEKARZ_ID=wizyty1_.LEKARZ_ID where wizyty1_.typ like 'Wybielanie' group by lekarz0_1_.IMIE
+Wi?niewski 1
+
+Process finished with exit code 0

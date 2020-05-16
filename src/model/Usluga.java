@@ -1,7 +1,9 @@
 package model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Usluga {
@@ -12,6 +14,8 @@ public class Usluga {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USLUGA_ID")
     private int id;
+
+    public Usluga(){}
 
     public Usluga(double cena, String opis, double rabat) {
         this.cena = cena;
@@ -60,27 +64,27 @@ public class Usluga {
 
     @ManyToOne
     @JoinColumn(name = "CENNIK_ID", foreignKey = @javax.persistence.ForeignKey(name = "FK_USL_CEN"))
-    private Cennik cennik;
+    private Set<Cennik> cennik = new HashSet<>();
 
-    public Cennik getCennik() {
+    public Set<Cennik> getCennik() {
         return cennik;
     }
-
-    public void setCennik(Cennik cennik) {
+    public void setCennik(Set<Cennik> cennik){
         this.cennik = cennik;
     }
 
+
     @ManyToOne
     @JoinColumn(name = "WIZYTA_ID", foreignKey = @javax.persistence.ForeignKey(name = "FK_USL_WIZ"))
-    private Wizyta wizyta;
+    private Set<Wizyta> wizyta = new HashSet<>();
 
-    public Wizyta getWizyta() {
+    public Set<Wizyta> getWizyta() {
         return wizyta;
     }
-
-    public void setWizyta(Wizyta wizyta) {
+    public void setWizyta(Set<Wizyta> wizyta){
         this.wizyta = wizyta;
     }
+
 }
 
 

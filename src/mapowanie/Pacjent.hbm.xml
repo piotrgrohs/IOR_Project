@@ -7,9 +7,9 @@
     <joined-subclass extends="model.Osoba" lazy="false"  name="model.Pacjent" table="PACJENCI">
         <key foreign-key="FK_PAC_OS" column="PACJENT_ID"/>
         <property name="nrKartyUbezp" column="nrKartyUbezp"/>
-        <set lazy="true" name="wizyta" inverse="true">
-            <key >
-                <column name="WIZYTA_ID"/>
+        <set name="wizyty" cascade="save-update">
+            <key foreign-key="FK_PAC_WIZ">
+                <column name="PACJENT_ID"/>
             </key>
             <one-to-many class="model.Wizyta"/>
         </set>

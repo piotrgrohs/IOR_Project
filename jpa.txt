@@ -1,0 +1,16 @@
+First task
+Hibernate: select lekarz0_.LEKARZ_ID as osoby_id1_5_, lekarz0_1_.NAZWISKO as nazwisko2_5_, lekarz0_1_.IMIE as imie3_5_, lekarz0_1_.PESEL as pesel4_5_, lekarz0_.SPECJALIZACJA as specjali2_4_, lekarz0_.TYTULNAUK as tytulnau3_4_ from LEKARZE lekarz0_ inner join OSOBY lekarz0_1_ on lekarz0_.LEKARZ_ID=lekarz0_1_.OSOBY_ID where lekarz0_1_.IMIE like ?
+Hibernate: select adres0_.ADRES_ID as adres_id1_3_0_, adres0_.KOD as kod2_3_0_, adres0_.MIEJSCOWOSC as miejscow3_3_0_, adres0_.ULICA as ulica4_3_0_, adres0_.NRDOMU as nrdomu5_3_0_, adres0_.NRMIESZKANIA as nrmieszk6_3_0_ from ADRESY adres0_ where adres0_.ADRES_ID=?
+Hibernate: select adres0_.ADRES_ID as adres_id1_3_0_, adres0_.KOD as kod2_3_0_, adres0_.MIEJSCOWOSC as miejscow3_3_0_, adres0_.ULICA as ulica4_3_0_, adres0_.NRDOMU as nrdomu5_3_0_, adres0_.NRMIESZKANIA as nrmieszk6_3_0_ from ADRESY adres0_ where adres0_.ADRES_ID=?
+Hibernate: select adres0_.ADRES_ID as adres_id1_3_0_, adres0_.KOD as kod2_3_0_, adres0_.MIEJSCOWOSC as miejscow3_3_0_, adres0_.ULICA as ulica4_3_0_, adres0_.NRDOMU as nrdomu5_3_0_, adres0_.NRMIESZKANIA as nrmieszk6_3_0_ from ADRESY adres0_ where adres0_.ADRES_ID=?
+Hibernate: select adres0_.ADRES_ID as adres_id1_3_0_, adres0_.KOD as kod2_3_0_, adres0_.MIEJSCOWOSC as miejscow3_3_0_, adres0_.ULICA as ulica4_3_0_, adres0_.NRDOMU as nrdomu5_3_0_, adres0_.NRMIESZKANIA as nrmieszk6_3_0_ from ADRESY adres0_ where adres0_.ADRES_ID=?
+Remigiusz
+Kajetan
+Natan
+Henryk
+Second task
+Hibernate: select lekarz0_1_.IMIE as col_0_0_, wizyty1_.typ as col_1_0_ from LEKARZE lekarz0_ inner join OSOBY lekarz0_1_ on lekarz0_.LEKARZ_ID=lekarz0_1_.OSOBY_ID inner join WIZYTY wizyty1_ on lekarz0_.LEKARZ_ID=wizyty1_.LEKARZ_ID where wizyty1_.typ like ?
+Wi?niewski Wybielanie
+Third task
+Hibernate: select lekarz0_1_.IMIE as col_0_0_, count(lekarz0_.LEKARZ_ID) as col_1_0_ from LEKARZE lekarz0_ inner join OSOBY lekarz0_1_ on lekarz0_.LEKARZ_ID=lekarz0_1_.OSOBY_ID inner join WIZYTY wizyty1_ on lekarz0_.LEKARZ_ID=wizyty1_.LEKARZ_ID where wizyty1_.typ like ? group by lekarz0_1_.IMIE
+Wi?niewski 1

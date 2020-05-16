@@ -1,0 +1,88 @@
+Hibernate: alter table WIZYTY drop foreign key FK_LEK_WIZ
+Hibernate: alter table WIZYTY drop foreign key FK_PAC_WIZ
+Hibernate: alter table WIZYTY drop foreign key FK_USL_CEN
+Hibernate: drop table if exists ADRESY
+Hibernate: drop table if exists LEKARZE
+Hibernate: drop table if exists OSOBY
+Hibernate: drop table if exists PACJENCI
+Hibernate: drop table if exists WIZYTY
+Hibernate: create table CENNIKI (CENNIK_ID integer not null auto_increment, KWOTA varchar(255), OPIS varchar(255), WIZYTA_ID integer, primary key (CENNIK_ID)) engine=InnoDB
+May 16, 2020 3:36:41 PM org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl getIsolatedConnection
+INFO: HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@1d61a348] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+Hibernate: create table USLUGA (USLUGA_ID integer not null auto_increment, CENA double precision, OPIS varchar(255), RABAT double precision, primary key (USLUGA_ID)) engine=InnoDB
+Hibernate: create table ZABIEGI (ZABIEG_ID integer not null, NRZEBA varchar(255), OPIS varchar(255), WIZYTA_ID integer, primary key (ZABIEG_ID)) engine=InnoDB
+Hibernate: create table ADRESY (ADRES_ID integer not null auto_increment, KOD varchar(255), MIEJSCOWOSC varchar(255), ULICA varchar(255), NRDOMU integer, NRMIESZKANIA integer, primary key (ADRES_ID)) engine=InnoDB
+Hibernate: create table LEKARZE (LEKARZ_ID integer not null, SPECJALIZACJA varchar(255), TYTULNAUK varchar(255), primary key (LEKARZ_ID)) engine=InnoDB
+Hibernate: create table OSOBY (OSOBY_ID integer not null auto_increment, NAZWISKO varchar(255), IMIE varchar(255), PESEL varchar(255), primary key (OSOBY_ID)) engine=InnoDB
+Hibernate: create table PACJENCI (PACJENT_ID integer not null, nrKartyUbezp varchar(255), primary key (PACJENT_ID)) engine=InnoDB
+Hibernate: create table WIZYTY (WIZYTA_ID integer not null, data datetime, typ varchar(255), LEKARZ_ID integer, PACJENT_ID integer, USLUGA_ID integer, primary key (WIZYTA_ID)) engine=InnoDB
+Hibernate: alter table CENNIKI add constraint FK_WIZ_CEN foreign key (WIZYTA_ID) references WIZYTY (WIZYTA_ID)
+Hibernate: alter table ZABIEGI add constraint FK_WIZ_ZAB foreign key (WIZYTA_ID) references WIZYTY (WIZYTA_ID)
+Hibernate: alter table LEKARZE add constraint FK_LEK_OS foreign key (LEKARZ_ID) references OSOBY (OSOBY_ID)
+Hibernate: alter table PACJENCI add constraint FK_PAC_OS foreign key (PACJENT_ID) references OSOBY (OSOBY_ID)
+Hibernate: alter table WIZYTY add constraint FK_LEK_WIZ foreign key (LEKARZ_ID) references LEKARZE (LEKARZ_ID)
+Hibernate: alter table WIZYTY add constraint FK_PAC_WIZ foreign key (PACJENT_ID) references PACJENCI (PACJENT_ID)
+Hibernate: alter table WIZYTY add constraint FK_USL_CEN foreign key (USLUGA_ID) references USLUGA (USLUGA_ID)
+Hibernate: insert into CENNIKI (KWOTA, OPIS) values (?, ?)
+Hibernate: insert into CENNIKI (KWOTA, OPIS) values (?, ?)
+Hibernate: insert into CENNIKI (KWOTA, OPIS) values (?, ?)
+Hibernate: insert into OSOBY (NAZWISKO, IMIE, PESEL) values (?, ?, ?)
+Hibernate: insert into PACJENCI (nrKartyUbezp, PACJENT_ID) values (?, ?)
+Hibernate: insert into ADRESY (KOD, MIEJSCOWOSC, ULICA, NRDOMU, NRMIESZKANIA) values (?, ?, ?, ?, ?)
+Hibernate: select max(WIZYTA_ID) from WIZYTY
+Hibernate: select max(ZABIEG_ID) from ZABIEGI
+Hibernate: insert into WIZYTY (data, typ, WIZYTA_ID) values (?, ?, ?)
+Hibernate: insert into ZABIEGI (NRZEBA, OPIS, ZABIEG_ID) values (?, ?, ?)
+Hibernate: insert into ZABIEGI (NRZEBA, OPIS, ZABIEG_ID) values (?, ?, ?)
+Hibernate: insert into ZABIEGI (NRZEBA, OPIS, ZABIEG_ID) values (?, ?, ?)
+Hibernate: insert into WIZYTY (data, typ, WIZYTA_ID) values (?, ?, ?)
+Hibernate: insert into OSOBY (NAZWISKO, IMIE, PESEL) values (?, ?, ?)
+Hibernate: insert into PACJENCI (nrKartyUbezp, PACJENT_ID) values (?, ?)
+Hibernate: insert into ADRESY (KOD, MIEJSCOWOSC, ULICA, NRDOMU, NRMIESZKANIA) values (?, ?, ?, ?, ?)
+Hibernate: insert into WIZYTY (data, typ, WIZYTA_ID) values (?, ?, ?)
+Hibernate: insert into OSOBY (NAZWISKO, IMIE, PESEL) values (?, ?, ?)
+Hibernate: insert into PACJENCI (nrKartyUbezp, PACJENT_ID) values (?, ?)
+Hibernate: insert into ADRESY (KOD, MIEJSCOWOSC, ULICA, NRDOMU, NRMIESZKANIA) values (?, ?, ?, ?, ?)
+Hibernate: insert into OSOBY (NAZWISKO, IMIE, PESEL) values (?, ?, ?)
+Hibernate: insert into PACJENCI (nrKartyUbezp, PACJENT_ID) values (?, ?)
+Hibernate: insert into ADRESY (KOD, MIEJSCOWOSC, ULICA, NRDOMU, NRMIESZKANIA) values (?, ?, ?, ?, ?)
+Hibernate: insert into OSOBY (NAZWISKO, IMIE, PESEL) values (?, ?, ?)
+Hibernate: insert into LEKARZE (SPECJALIZACJA, TYTULNAUK, LEKARZ_ID) values (?, ?, ?)
+Hibernate: insert into OSOBY (NAZWISKO, IMIE, PESEL) values (?, ?, ?)
+Hibernate: insert into LEKARZE (SPECJALIZACJA, TYTULNAUK, LEKARZ_ID) values (?, ?, ?)
+Hibernate: insert into OSOBY (NAZWISKO, IMIE, PESEL) values (?, ?, ?)
+Hibernate: insert into LEKARZE (SPECJALIZACJA, TYTULNAUK, LEKARZ_ID) values (?, ?, ?)
+Hibernate: insert into OSOBY (NAZWISKO, IMIE, PESEL) values (?, ?, ?)
+Hibernate: insert into LEKARZE (SPECJALIZACJA, TYTULNAUK, LEKARZ_ID) values (?, ?, ?)
+Hibernate: insert into OSOBY (NAZWISKO, IMIE, PESEL) values (?, ?, ?)
+Hibernate: insert into LEKARZE (SPECJALIZACJA, TYTULNAUK, LEKARZ_ID) values (?, ?, ?)
+Hibernate: insert into OSOBY (NAZWISKO, IMIE, PESEL) values (?, ?, ?)
+Hibernate: insert into LEKARZE (SPECJALIZACJA, TYTULNAUK, LEKARZ_ID) values (?, ?, ?)
+Hibernate: insert into OSOBY (NAZWISKO, IMIE, PESEL) values (?, ?, ?)
+Hibernate: insert into LEKARZE (SPECJALIZACJA, TYTULNAUK, LEKARZ_ID) values (?, ?, ?)
+Hibernate: insert into OSOBY (NAZWISKO, IMIE, PESEL) values (?, ?, ?)
+Hibernate: insert into LEKARZE (SPECJALIZACJA, TYTULNAUK, LEKARZ_ID) values (?, ?, ?)
+Hibernate: insert into OSOBY (NAZWISKO, IMIE, PESEL) values (?, ?, ?)
+Hibernate: insert into LEKARZE (SPECJALIZACJA, TYTULNAUK, LEKARZ_ID) values (?, ?, ?)
+Hibernate: insert into OSOBY (NAZWISKO, IMIE, PESEL) values (?, ?, ?)
+Hibernate: insert into LEKARZE (SPECJALIZACJA, TYTULNAUK, LEKARZ_ID) values (?, ?, ?)
+Hibernate: insert into USLUGA (CENA, OPIS, RABAT) values (?, ?, ?)
+Hibernate: insert into USLUGA (CENA, OPIS, RABAT) values (?, ?, ?)
+Hibernate: insert into USLUGA (CENA, OPIS, RABAT) values (?, ?, ?)
+Hibernate: update WIZYTY set PACJENT_ID=? where WIZYTA_ID=?
+Hibernate: update WIZYTY set PACJENT_ID=? where WIZYTA_ID=?
+Hibernate: update ZABIEGI set WIZYTA_ID=? where ZABIEG_ID=?
+Hibernate: update ZABIEGI set WIZYTA_ID=? where ZABIEG_ID=?
+Hibernate: update ZABIEGI set WIZYTA_ID=? where ZABIEG_ID=?
+Hibernate: update CENNIKI set WIZYTA_ID=? where CENNIK_ID=?
+Hibernate: update CENNIKI set WIZYTA_ID=? where CENNIK_ID=?
+Hibernate: update WIZYTY set PACJENT_ID=? where WIZYTA_ID=?
+Hibernate: update CENNIKI set WIZYTA_ID=? where CENNIK_ID=?
+Hibernate: update WIZYTY set LEKARZ_ID=? where WIZYTA_ID=?
+Hibernate: update WIZYTY set LEKARZ_ID=? where WIZYTA_ID=?
+Hibernate: update WIZYTY set LEKARZ_ID=? where WIZYTA_ID=?
+Hibernate: update WIZYTY set USLUGA_ID=? where WIZYTA_ID=?
+Hibernate: update WIZYTY set USLUGA_ID=? where WIZYTA_ID=?
+Hibernate: update WIZYTY set USLUGA_ID=? where WIZYTA_ID=?
+Hibernate: update WIZYTY set USLUGA_ID=? where WIZYTA_ID=?
+Hibernate: update WIZYTY set USLUGA_ID=? where WIZYTA_ID=?

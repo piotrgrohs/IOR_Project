@@ -7,21 +7,24 @@ import java.io.Serializable;
 import java.util.*;
 
 @Entity
-@PrimaryKeyJoinColumn(name="LEKARZ_ID", foreignKey = @javax.persistence.ForeignKey(name = "FK_LEK_OS"))
+@PrimaryKeyJoinColumn(name="LEKARZ_ID", foreignKey = @ForeignKey(name = "FK_LEK_OS"))
 public class Lekarz extends Osoba implements Serializable {
     private String specjalizacja;
     private String tytulNauk;
 
     @OneToMany
-    @JoinColumn(name="WIZYTA_ID",foreignKey = @javax.persistence.ForeignKey(name = "FK_LEK_WIZ"))
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinColumn(name="WIZYTA_ID",foreignKey = @ForeignKey(name = "FK_LEK_WIZ"))
     private Set<Wizyta> wizyty = new HashSet<>();
 
-    public Set<Wizyta> getWizyta(){
+    public Set<Wizyta> getWizyty() {
         return wizyty;
     }
-    public void setWizyta(Set<Wizyta> wizyty){
+
+    public void setWizyty(Set<Wizyta> wizyty) {
         this.wizyty = wizyty;
     }
+
     public Lekarz() {
 
     }

@@ -4,12 +4,12 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="model.Zabieg" table="ZABIEG" schema="hiberlab">
+    <class name="model.Zabieg" table="ZABIEGI" schema="hiberlab">
         <id name="id" column="ZABIEG_ID">
             <generator class="increment"/>
         </id>
         <property name="nrZeba" column="NRZEBA"/>
         <property name="opis" column="OPIS"/>
-        <one-to-one name="wizyta" class="model.Wizyta"  foreign-key="FK_ZAB_WIZ"  cascade="save-update"/>
+
     </class>
 </hibernate-mapping>

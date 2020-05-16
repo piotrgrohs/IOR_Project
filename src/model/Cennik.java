@@ -10,27 +10,17 @@ public class Cennik {
     private String kwota;
     private String opis;
 
+    public Cennik(){}
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "CENNIK_ID")
     private int id;
 
-    @OneToOne
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinColumn(name = "WIZYTA_ID", foreignKey = @ForeignKey(name = "FK_CEN_WIZ"))
-    private Wizyta wizyta;
 
     public Cennik(String kwota,String opis) {
         this.kwota = kwota;
         this.opis = opis;
-    }
-
-    public Wizyta getWizyta() {
-        return wizyta;
-    }
-
-    public void setWizyta(Wizyta wizyta) {
-        this.wizyta = wizyta;
     }
 
     @Basic
